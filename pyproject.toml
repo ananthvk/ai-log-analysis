@@ -1,0 +1,47 @@
+[project]
+name = "ai_log_analysis"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "ananthvk", email = "-"},
+]
+dependencies = ["boto3>=1.42.57", "instructor[bedrock]>=1.14.5"]
+requires-python = "==3.14.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+typecheck = "mypy . --strict"
+format = { composite = [
+    "ruff check . --fix",
+    "ruff format .",
+    "ruff check . --select I --fix",
+    "black .",
+] }
+test = "pytest"
+codespell = "codespell"
+check = { composite = [
+    "pdm run format",
+    "pdm run typecheck",
+    "pdm run test",
+    "pdm run codespell",
+] }
+
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 88
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "mypy>=1.19.1",
+    "black>=26.1.0",
+    "ruff>=0.15.4",
+    "codespell>=2.4.1",
+]
