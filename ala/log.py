@@ -17,7 +17,11 @@ patterns = {
         re.compile(
             r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?([Zz]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?",
             re.IGNORECASE,
-        )
+        ),
+        re.compile(
+            r"\b\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\b",
+            re.IGNORECASE,
+        ),
     ],
     "log_level": [re.compile(r"\b(DEBUG|INFO|WARN|ERROR|FATAL)\b", re.IGNORECASE)],
 }
@@ -113,7 +117,10 @@ def __parse_text_log(raw: RawLog) -> ParsedLog:
     try:
         parsed_ts = datetime.fromisoformat(timestamp)  # type: ignore
     except Exception:
-        parsed_ts = datetime.fromtimestamp(raw.timestamp)
+        try:
+            parsed_ts = datetime.strptime(timestamp, "%d-%b-%Y %H:%M:%S") # type: ignore
+        except Exception as e:
+            parsed_ts = datetime.fromtimestamp(raw.timestamp)
 
     return ParsedLog(
         source_id=source_id or "unknown",
@@ -163,7 +170,10 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
     try:
         parsed_ts = datetime.fromisoformat(timestamp)
     except Exception:
-        parsed_ts = datetime.fromtimestamp(raw.timestamp)
+        try:
+            parsed_ts = datetime.strptime(timestamp, "%d-%b-%Y %H:%M:%S")
+        except Exception as e:
+            parsed_ts = datetime.fromtimestamp(raw.timestamp)
 
     # Upgrade error message keys / error type keys into message
     error_message = extract_value(parsed, ERROR_MESSAGE_KEYS)
@@ -206,6 +216,3 @@ def parse_log(raw_log: RawLog) -> ParsedLog:
     else:
         return __parse_text_log(raw_log)
 
-
-# log = """{"timestamp": "2026-02-27T17:34:11Z", "log_level": "ERROR", "errorMessage": "'n'", "errorType": "KeyError", "requestId": "b06f09e6-828a-4a43-8903-14bd221dc62b", "stackTrace": ["  File \\"/var/task/lambda_function.py\\", line 17, in lambda_handler\\n    n = int(body[\\"n\\"])  # Get n from the body\\n"]}"""
-# print(parse_log(RawLog(message=log, source_id="lambda/x/yz", timestamp=3)))
