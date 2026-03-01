@@ -118,7 +118,7 @@ def __parse_text_log(raw: RawLog) -> ParsedLog:
         parsed_ts = datetime.fromisoformat(timestamp)  # type: ignore
     except Exception:
         try:
-            parsed_ts = datetime.strptime(timestamp, "%d-%b-%Y %H:%M:%S") # type: ignore
+            parsed_ts = datetime.strptime(timestamp, "%d-%b-%Y %H:%M:%S")  # type: ignore
         except Exception as e:
             parsed_ts = datetime.fromtimestamp(raw.timestamp)
 
@@ -147,6 +147,14 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
     level = extract_value(parsed, LEVEL_KEYS)
     message = extract_value(parsed, MESSAGE_KEYS)
     request_id = extract_value(parsed, REQUEST_ID_KEYS)
+
+    if message is None:
+        message = ""
+    
+    if "timeout" in raw.message and not message:
+        message = "Timeout: time limit exceeded"
+        if not level:
+            level = "ERROR"
 
     source_id = raw.source_id
     if not source_id:
@@ -184,10 +192,13 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
     if error_message:
         if level != "FATAL":
             level = "ERROR"
-        if message is not None:
+        if message is not None and message:
             message = f"{error_type}: {error_message.strip()}; message={message}"
         else:
             message = f"{error_type}: {error_message.strip()}"
+
+    if not message and error_type:
+        message = f"{error_type} error occured"
 
     return ParsedLog(
         source_id=source_id,
@@ -215,4 +226,3 @@ def parse_log(raw_log: RawLog) -> ParsedLog:
         return parsed
     else:
         return __parse_text_log(raw_log)
-

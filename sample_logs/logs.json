@@ -1,0 +1,428 @@
+[
+  {
+    "timestamp": "1772364889246",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525057772019963128571434272710975120371752625443700748",
+          "timestamp": 1772364888265,
+          "message": "{\"timestamp\": \"2026-03-01T11:34:48Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"division by zero\", \"errorType\": \"ZeroDivisionError\", \"requestId\": \"e47d4d85-d84d-44d8-ad16-7cbbee79b3b3\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 25, in lambda_handler\\n    result = m / n\\n\"]}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364894161",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525057898822000327416557461673231008508016070419677195",
+          "timestamp": 1772364893951,
+          "message": "{\"time\":\"2026-03-01T11:34:53.951Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"1a64a3be-750a-4b04-8a1d-7d313e6cd996\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3001.458,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364894199",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525057899089609269798924939387368813751858002486362112",
+          "timestamp": 1772364893963,
+          "message": "{\"time\":\"2026-03-01T11:34:53.963Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"1a64a3be-750a-4b04-8a1d-7d313e6cd996\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":44},\"status\":\"timeout\"}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364898682",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525057998907744778421994126334036689182921340412887052",
+          "timestamp": 1772364898439,
+          "message": "{\"time\":\"2026-03-01T11:34:58.439Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"702168c5-57d5-4c45-abf2-ff18ac7fa016\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3000.908,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364900156",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]9e884d96c5114ab9b2e75c4f76adc645",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525057882141042918915651358975428238750280797108895753",
+          "timestamp": 1772364893203,
+          "message": "{\"timestamp\": \"2026-03-01T11:34:53Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"division by zero\", \"errorType\": \"ZeroDivisionError\", \"requestId\": \"bc6aca1b-fa89-4e7f-9fae-cf0d4f46ee27\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 25, in lambda_handler\\n    result = m / n\\n\"]}"
+        },
+        {
+          "id": "39525057938205116348021637936796223976188261623143661584",
+          "timestamp": 1772364895717,
+          "message": "{\"timestamp\": \"2026-03-01T11:34:55Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"division by zero\", \"errorType\": \"ZeroDivisionError\", \"requestId\": \"9e6d7351-82ec-4f93-94ff-fc60041b52ec\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 25, in lambda_handler\\n    result = m / n\\n\"]}"
+        },
+        {
+          "id": "39525057946924707720647111585136689820793770971982004244",
+          "timestamp": 1772364896108,
+          "message": "{\"timestamp\": \"2026-03-01T11:34:56Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"'m'\", \"errorType\": \"KeyError\", \"requestId\": \"8a17f454-4123-49c8-81e6-c6eab19d8eae\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 22, in lambda_handler\\n    m = int(body[\\\"m\\\"])  # Get m from the body\\n\"]}"
+        },
+        {
+          "id": "39525057946924707720647111585136689820793770971982004245",
+          "timestamp": 1772364896108,
+          "message": "{\"timestamp\": \"2026-03-01T11:34:58Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"'n'\", \"errorType\": \"KeyError\", \"requestId\": \"8a17f454-4123-49c8-81e6-c6eab19d8eae\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 23, in lambda_handler\\n    m = int(body[\\\"n\\\"])  # Get n from the body\\n\"]}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364900992",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]9e884d96c5114ab9b2e75c4f76adc645",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058051849713879733693467215469615069157492224950272",
+          "timestamp": 1772364900813,
+          "message": "{\"time\":\"2026-03-01T11:35:00.813Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"c85cb8e6-89d2-4188-ba4c-3267ef75ec2e\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3000.6,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364903968",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525057999933579057554402797244666755273520035006054400",
+          "timestamp": 1772364898485,
+          "message": "{\"time\":\"2026-03-01T11:34:58.485Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"702168c5-57d5-4c45-abf2-ff18ac7fa016\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":43},\"status\":\"timeout\"}}"
+        },
+        {
+          "id": "39525058024977315915504292585189278375457630006222061572",
+          "timestamp": 1772364899608,
+          "message": "{\"timestamp\": \"2026-03-01T11:34:59Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"invalid literal for int() with base 10: 'e321'\", \"errorType\": \"ValueError\", \"requestId\": \"25176913-db62-467b-b4e1-f60138eaf4ff\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 23, in lambda_handler\\n    n = int(body[\\\"n\\\"])  # Get n from the body\\n\"]}"
+        },
+        {
+          "id": "39525058048236993157571732521811032533829871056959635464",
+          "timestamp": 1772364900651,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:00Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"'m'\", \"errorType\": \"KeyError\", \"requestId\": \"096291cb-6a28-4290-adff-ac94b69d3e1c\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 22, in lambda_handler\\n    m = int(body[\\\"m\\\"])  # Get m from the body\\n\"]}"
+        },
+        {
+          "id": "39525058116811784643053398682033366222223582687849414668",
+          "timestamp": 1772364903726,
+          "message": "{\"time\":\"2026-03-01T11:35:03.726Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"009f590a-3050-46c9-8934-706f39642d94\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3001.126,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364903984",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058117681513705796092984589673826348689620125548544",
+          "timestamp": 1772364903765,
+          "message": "{\"time\":\"2026-03-01T11:35:03.765Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"009f590a-3050-46c9-8934-706f39642d94\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":43},\"status\":\"timeout\"}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364908552",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058122565376904274299458110265053344292289021149187",
+          "timestamp": 1772364903984,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:03Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"invalid literal for int() with base 10: 'e321'\", \"errorType\": \"ValueError\", \"requestId\": \"347d9f27-7345-415d-bb7d-2897648f870b\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 23, in lambda_handler\\n    n = int(body[\\\"n\\\"])  # Get n from the body\\n\"]}"
+        },
+        {
+          "id": "39525058219729723734272224485781389567273203370577821709",
+          "timestamp": 1772364908341,
+          "message": "{\"time\":\"2026-03-01T11:35:08.341Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"67dd2549-ff0c-4725-83cb-76f3ae0e6b9f\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3014.778,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364910061",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]9e884d96c5114ab9b2e75c4f76adc645",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058053098555610851408374089999620805456130897805312",
+          "timestamp": 1772364900869,
+          "message": "{\"time\":\"2026-03-01T11:35:00.869Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"c85cb8e6-89d2-4188-ba4c-3267ef75ec2e\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":44},\"status\":\"timeout\"}}"
+        },
+        {
+          "id": "39525058099350301152603920769635079318278157894301188109",
+          "timestamp": 1772364902943,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:02Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"'m'\", \"errorType\": \"KeyError\", \"requestId\": \"4ce13295-c474-48a8-a34b-7debeffae6e3\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 22, in lambda_handler\\n    m = int(body[\\\"m\\\"])  # Get m from the body\\n\"]}"
+        },
+        {
+          "id": "39525058178228036919806734821246914848635412540953919511",
+          "timestamp": 1772364906480,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:06Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"invalid literal for int() with base 10: 'e321'\", \"errorType\": \"ValueError\", \"requestId\": \"341d59f0-9571-4843-9e6b-3c2898b9b48c\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 23, in lambda_handler\\n    n = int(body[\\\"n\\\"])  # Get n from the body\\n\"]}"
+        },
+        {
+          "id": "39525058195578016684263559625361703664755837792606683163",
+          "timestamp": 1772364907258,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:07Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"\", \"errorType\": \"MemoryError\", \"requestId\": \"c616c64a-2148-4ac0-a524-5b152e25a6a4\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 45, in lambda_handler\\n    large_data = exceed_memory(n)\\n\", \"  File \\\"/var/task/lambda_function.py\\\", line 7, in exceed_memory\\n    large_data = [0] * (n * 10**6)  # n is used to control the size (size will be in millions of elements)\\n\"]}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364910829",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]9e884d96c5114ab9b2e75c4f76adc645",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058268479152738260166675844233243634144917966356480",
+          "timestamp": 1772364910527,
+          "message": "{\"time\":\"2026-03-01T11:35:10.527Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"ec8e2f89-480a-4f62-99d3-1f69e6566efb\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3014.823,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364917454",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]39d806e3acae43548ca2268090937d61",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058317540792175027537595346895289406596406396911621",
+          "timestamp": 1772364912727,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:12Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"\", \"errorType\": \"MemoryError\", \"requestId\": \"92305c0b-fec0-445e-852d-378fea2b8686\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 45, in lambda_handler\\n    large_data = exceed_memory(n)\\n\", \"  File \\\"/var/task/lambda_function.py\\\", line 7, in exceed_memory\\n    large_data = [0] * (n * 10**6)  # n is used to control the size (size will be in millions of elements)\\n\"]}"
+        },
+        {
+          "id": "39525058345238317711602571537134257384035861396824588300",
+          "timestamp": 1772364913969,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:13Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"\", \"errorType\": \"MemoryError\", \"requestId\": \"5a1a8adf-9eb1-4288-94e7-35df281087e3\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 45, in lambda_handler\\n    large_data = exceed_memory(n)\\n\", \"  File \\\"/var/task/lambda_function.py\\\", line 7, in exceed_memory\\n    large_data = [0] * (n * 10**6)  # n is used to control the size (size will be in millions of elements)\\n\"]}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364917542",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058220688655777809041291799841073765963014211764224",
+          "timestamp": 1772364908384,
+          "message": "{\"time\":\"2026-03-01T11:35:08.384Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"67dd2549-ff0c-4725-83cb-76f3ae0e6b9f\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":43},\"status\":\"timeout\"}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364919735",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]9e884d96c5114ab9b2e75c4f76adc645",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058269839498195370534698405417154280070040811798528",
+          "timestamp": 1772364910588,
+          "message": "{\"time\":\"2026-03-01T11:35:10.588Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"ec8e2f89-480a-4f62-99d3-1f69e6566efb\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":43},\"status\":\"timeout\"}}"
+        },
+        {
+          "id": "39525058292697762023864423418479528383744640584441724935",
+          "timestamp": 1772364911613,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:11Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"\", \"errorType\": \"MemoryError\", \"requestId\": \"51bbf161-e858-416a-8141-37b6769d995b\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 45, in lambda_handler\\n    large_data = exceed_memory(n)\\n\", \"  File \\\"/var/task/lambda_function.py\\\", line 7, in exceed_memory\\n    large_data = [0] * (n * 10**6)  # n is used to control the size (size will be in millions of elements)\\n\"]}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364926580",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058421640670761768486431068364935221527098009976834",
+          "timestamp": 1772364917395,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:17Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"\", \"errorType\": \"MemoryError\", \"requestId\": \"c595e7ae-b7d9-4df3-98fe-49dfe98914a3\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 45, in lambda_handler\\n    large_data = exceed_memory(n)\\n\", \"  File \\\"/var/task/lambda_function.py\\\", line 7, in exceed_memory\\n    large_data = [0] * (n * 10**6)  # n is used to control the size (size will be in millions of elements)\\n\"]}"
+        },
+        {
+          "id": "39525058470925317650521163573862302317774406026226696207",
+          "timestamp": 1772364919605,
+          "message": "{\"timestamp\": \"2026-03-01T11:35:19Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"\", \"errorType\": \"MemoryError\", \"requestId\": \"1fd5baf9-32ac-40c7-99ce-744e864ca864\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 45, in lambda_handler\\n    large_data = exceed_memory(n)\\n\", \"  File \\\"/var/task/lambda_function.py\\\", line 7, in exceed_memory\\n    large_data = [0] * (n * 10**6)  # n is used to control the size (size will be in millions of elements)\\n\"]}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364935163",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058812974147505583861329090530165371251226251231234",
+          "timestamp": 1772364934943,
+          "message": "{\"time\":\"2026-03-01T11:35:34.943Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"8727a891-4b04-4b39-9af5-7db8799152bc\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3000.423,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364935190",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525058813442463154753004415083317561508293305817432064",
+          "timestamp": 1772364934964,
+          "message": "{\"time\":\"2026-03-01T11:35:34.964Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"8727a891-4b04-4b39-9af5-7db8799152bc\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":44},\"status\":\"timeout\"}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364943781",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525059005451879314101669674190530495406316880167895043",
+          "timestamp": 1772364943574,
+          "message": "{\"time\":\"2026-03-01T11:35:43.574Z\",\"type\":\"platform.runtimeDone\",\"record\":{\"requestId\":\"3fe97571-70ea-4529-a102-3d6096c45126\",\"status\":\"timeout\",\"metrics\":{\"durationMs\":3000.744,\"producedBytes\":0}}}"
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "1772364943867",
+    "message": {
+      "messageType": "DATA_MESSAGE",
+      "owner": "098688552228",
+      "logGroup": "/aws/lambda/faultyLambda",
+      "logStream": "2026/03/01/faultyLambda[$LATEST]78bb43c2b6534a359ca8d245607699ba",
+      "subscriptionFilters": [
+        "filterErrors"
+      ],
+      "logEvents": [
+        {
+          "id": "39525059006165503160454649614740723939587159549794451456",
+          "timestamp": 1772364943606,
+          "message": "{\"time\":\"2026-03-01T11:35:43.606Z\",\"type\":\"platform.report\",\"record\":{\"requestId\":\"3fe97571-70ea-4529-a102-3d6096c45126\",\"metrics\":{\"durationMs\":3000.0,\"billedDurationMs\":3000,\"memorySizeMB\":128,\"maxMemoryUsedMB\":43},\"status\":\"timeout\"}}"
+        }
+      ]
+    }
+  }
+]

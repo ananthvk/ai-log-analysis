@@ -30,6 +30,5 @@ def create_fingerprint(log: ParsedLog, normalizer: Normalizer) -> str:
 
     message_normalized = normalizer.normalize(log.message.strip())
     stack_trace_normalized = normalizer.normalize(stack_trace)
-    print(stack_trace_normalized)
     fingerprint_input = f"{log.level}{message_normalized}{stack_trace_normalized}"
     return hashlib.sha256(fingerprint_input.encode("utf-8")).hexdigest()

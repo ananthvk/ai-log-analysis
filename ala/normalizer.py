@@ -20,6 +20,8 @@ patterns = {
         re.IGNORECASE,
     ),
     "hex": re.compile(r"0[xX][0-9a-fA-F]+", re.IGNORECASE),
+    "str1": re.compile(r'"(?:\\.|[^"\\])*"', re.IGNORECASE),
+    "str2": re.compile(r"'(?:\\.|[^'\\])*'", re.IGNORECASE),
 }
 
 

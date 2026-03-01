@@ -178,3 +178,5 @@ __pypackages__/
 .pdm-python
 .vscode/
 **/a.out
+
+logs/
