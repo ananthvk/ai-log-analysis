@@ -1,6 +1,6 @@
-from ala.normalizer import default_normalizer
-from ala.log import parse_log, RawLog
-from ala.fingerprint import create_fingerprint
+from log_analyser.core.normalizer import default_normalizer
+from log_analyser.core.log import parse_log, RawLog
+from log_analyser.core.fingerprint import create_fingerprint_with_stack_trace
 from collections import defaultdict
 import json
 
@@ -29,7 +29,7 @@ for i, message in enumerate(error_messages):
         parsed_log = parse_log(message)
 
         normalized = default_normalizer.normalize(parsed_log.message)
-        fingerprint = create_fingerprint(parsed_log, default_normalizer)
+        fingerprint = create_fingerprint_with_stack_trace(parsed_log, default_normalizer)
 
         clusters[fingerprint].append(
             {
@@ -56,6 +56,7 @@ for cluster_id, logs in clusters.items():
 
     for log in logs:
         print(f"\nLog #{log['index'] + 1}:")
+        print(f"  Source: {log['parsed'].source_id}")
         print(f"  Message: {log['parsed'].message}")
         print(f"  Normalized: {log['normalized']}")
         if log["parsed"].level:

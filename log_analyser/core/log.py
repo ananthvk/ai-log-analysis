@@ -74,6 +74,8 @@ class ParsedLog:
         request_id (str | None): An optional identifier to identify the request
     """
 
+    raw: str
+    kind: Literal["json", "text"]
     source_id: str
     timestamp: datetime
     level: Literal["DEBUG", "INFO", "WARN", "ERROR", "FATAL", "UNKNOWN"]
@@ -83,6 +85,7 @@ class ParsedLog:
 
 
 def __parse_text_log(raw: RawLog) -> ParsedLog:
+    raw_messsage = raw.message
     timestamp = None
     level = None
 
@@ -129,11 +132,14 @@ def __parse_text_log(raw: RawLog) -> ParsedLog:
         request_id=None,
         timestamp=parsed_ts,
         parameters={},
+        raw=raw_messsage,
+        kind="text",
     )
     # TODO: Parse additional parameters, key=value etc
 
 
 def __parse_json_log(raw: RawLog) -> ParsedLog | None:
+    raw_message = raw.message
     try:
         parsed = json.loads(raw.message)
     except json.JSONDecodeError:
@@ -150,7 +156,7 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
 
     if message is None:
         message = ""
-    
+
     if "timeout" in raw.message and not message:
         message = "Timeout: time limit exceeded"
         if not level:
@@ -201,6 +207,8 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
         message = f"{error_type} error occured"
 
     return ParsedLog(
+        raw=raw_message,
+        kind="json",
         source_id=source_id,
         level=level,  # type: ignore
         message=message,
@@ -225,4 +233,5 @@ def parse_log(raw_log: RawLog) -> ParsedLog:
     if parsed is not None:
         return parsed
     else:
-        return __parse_text_log(raw_log)
+        parsed = __parse_text_log(raw_log)
+        return parsed

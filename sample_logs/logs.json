@@ -195,7 +195,7 @@
         {
           "id": "39525058122565376904274299458110265053344292289021149187",
           "timestamp": 1772364903984,
-          "message": "{\"timestamp\": \"2026-03-01T11:35:03Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"invalid literal for int() with base 10: 'e321'\", \"errorType\": \"ValueError\", \"requestId\": \"347d9f27-7345-415d-bb7d-2897648f870b\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 23, in lambda_handler\\n    n = int(body[\\\"n\\\"])  # Get n from the body\\n\"]}"
+          "message": "{\"timestamp\": \"2026-03-01T11:35:03Z\", \"log_level\": \"ERROR\", \"errorMessage\": \"invalid literal for int() with base 10: 'e6418'\", \"errorType\": \"ValueError\", \"requestId\": \"347d9f27-7345-415d-bb7d-2897648f870b\", \"stackTrace\": [\"  File \\\"/var/task/lambda_function.py\\\", line 23, in lambda_handler\\n    n = int(body[\\\"n\\\"])  # Get n from the body\\n\"]}"
         },
         {
           "id": "39525058219729723734272224485781389567273203370577821709",

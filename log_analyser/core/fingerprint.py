@@ -6,10 +6,12 @@ import hashlib
 STACK_TRACE_MAX_CHARS = 100
 STACK_TRACE_MAX_LINES = 5
 
+# TODO: Should normalization be done outside this function or within this function ?
 
-def create_fingerprint(log: ParsedLog, normalizer: Normalizer) -> str:
+def create_fingerprint_with_stack_trace(log: ParsedLog, normalizer: Normalizer) -> str:
     """
     Create a unique fingerprint for a log entry, that can be used to group similar log messages together
+    It also includes the stackTrace (from parameters)
     """
 
     stack_trace = log.parameters.get("stackTrace", None)
@@ -31,4 +33,14 @@ def create_fingerprint(log: ParsedLog, normalizer: Normalizer) -> str:
     message_normalized = normalizer.normalize(log.message.strip())
     stack_trace_normalized = normalizer.normalize(stack_trace)
     fingerprint_input = f"{log.level}{message_normalized}{stack_trace_normalized}"
+    return hashlib.sha256(fingerprint_input.encode("utf-8")).hexdigest()
+
+def create_fingerprint(log: ParsedLog, normalizer: Normalizer) -> str:
+    """
+    Create a unique fingerprint for a log entry, that can be used to group similar log messages together
+    It does not include any other parameters, it only considers the log message
+    """
+
+    message_normalized = normalizer.normalize(log.message.strip())
+    fingerprint_input = f"{log.level}{message_normalized}"
     return hashlib.sha256(fingerprint_input.encode("utf-8")).hexdigest()

@@ -1,7 +1,20 @@
-from ala.normalizer import default_normalizer
-from ala.log import parse_log, RawLog
-from ala.fingerprint import create_fingerprint
+from log_analyser.core.normalizer import default_normalizer
+from datetime import datetime
+from log_analyser.core.log import parse_log, RawLog
+from log_analyser.core.fingerprint import create_fingerprint_with_stack_trace
+from log_analyser.store.incident_repository import IncidentRepository
+from log_analyser.store.sqlite_repository import SQLiteIncidentRepository
+from log_analyser.core.incident import Incident
+from log_analyser.rca.root_cause import RootCause, infer
+import instructor
+
+from uuid import uuid7
 import time
+
+repo: IncidentRepository = SQLiteIncidentRepository("logs/incidents.db")
+# TODO: Close it later
+model_name = "us.deepseek.r1-v1:0"
+
 
 message = """
 {
@@ -19,15 +32,45 @@ parsed_log = parse_log(
     raw_log=RawLog(message=message, source_id=source, timestamp=int(time.time()))
 )
 
-print("=== Parsed ===")
-print(parsed_log)
+fingerprint = create_fingerprint_with_stack_trace(parsed_log, default_normalizer)
 
-print("=== Message ===")
-print(parsed_log.message)
 
-print("=== Normalized ===")
-print(default_normalizer.normalize(parsed_log.message))
+# Check if the incident already exists
+id = repo.get_id_by_source_fingerprint(source_id=source, fingerprint=fingerprint)
+if id is not None:
+    # For now just increase the count and exit
+    print("Incident already exists, incrementing count...")
+    repo.increment_count(id, datetime.now())
+    exit(0)
 
-print("=== Fingerprint ===")
-fingerprint = create_fingerprint(parsed_log, default_normalizer)
-print(fingerprint)
+# The incident does not exist, try creating it. Note: This can fail if it was created in the meanwhile
+id = str(uuid7())
+now = datetime.now()
+incident = Incident(
+    id=id,
+    source_id=source,
+    timestamp=now,
+    fingerprint=fingerprint,
+    first_seen=now,
+    last_seen=now,
+    last_changed=now,
+    count=1,
+    status="PROCESSING",
+    root_cause="",
+    recommendations=[],
+    sample_log=parsed_log.raw,
+)
+repo.create(incident)
+
+# Call the LLM to perform the analysis
+instructor = instructor.from_provider(f"bedrock/${model_name}")
+root_cause = infer(instructor, parsed_log, model_name)
+
+# Update the record
+# NOTE: Causes race condition with count, only update required fields
+incident.recommendations = root_cause.recommended_actions
+incident.status = "AWAIT_USER_ACTION"
+incident.root_cause = root_cause.description + ": " + root_cause.root_cause
+repo.update(incident)
+
+print(root_cause)
