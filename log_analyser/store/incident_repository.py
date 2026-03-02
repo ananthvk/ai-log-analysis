@@ -1,5 +1,6 @@
 from abc import abstractmethod, ABC
 from ..core.incident import Incident
+from datetime import datetime
 
 
 class IncidentRepository:
@@ -8,10 +9,23 @@ class IncidentRepository:
     def get(self, incident_id: str) -> Incident | None: ...
 
     @abstractmethod
-    def get_id_by_source_fingerprint(self, source_id: str, fingerprint: str) -> str | None: ...
+    def get_id_by_source_fingerprint(
+        self, source_id: str, fingerprint: str
+    ) -> str | None: ...
 
     @abstractmethod
     def create(self, incident: Incident) -> None: ...
+
+    @abstractmethod
+    def update_analysis_result(
+        self,
+        id: str,
+        root_cause: str,
+        recommendations: list[str],
+        status: str,
+        last_changed: datetime,
+        current_status: str,
+    ) -> bool: ...
 
     @abstractmethod
     def update(self, incident: Incident) -> None:

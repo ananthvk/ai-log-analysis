@@ -85,7 +85,7 @@ class SQLiteIncidentRepository(IncidentRepository):
                 incident.status,
                 json.dumps(incident.recommendations),
                 incident.sample_log,
-                incident.root_cause
+                incident.root_cause,
             ),
         )
         self._conn.commit()
@@ -113,6 +113,23 @@ class SQLiteIncidentRepository(IncidentRepository):
             ),
         )
         self._conn.commit()
+
+    @override
+    def update_analysis_result(
+        self,
+        id: str,
+        root_cause: str,
+        recommendations: list[str],
+        status: str,
+        last_changed: datetime,
+        current_status: str,
+    ) -> bool:
+        cursor =self._conn.execute(
+            "UPDATE incidents SET root_cause = ?, recommendations = ?, status = ?, last_changed = ? WHERE id = ? AND status = ?",
+            (root_cause, json.dumps(recommendations), status, last_changed, id, current_status),
+        )
+        self._conn.commit()
+        return cursor.rowcount > 0
 
     @override
     def increment_count(self, incident_id: str, timestamp: datetime) -> None:

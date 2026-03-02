@@ -67,10 +67,13 @@ instructor = instructor.from_provider(f"bedrock/${model_name}")
 root_cause = infer(instructor, parsed_log, model_name)
 
 # Update the record
-# NOTE: Causes race condition with count, only update required fields
-incident.recommendations = root_cause.recommended_actions
-incident.status = "AWAIT_USER_ACTION"
-incident.root_cause = root_cause.description + ": " + root_cause.root_cause
-repo.update(incident)
+repo.update_analysis_result(
+    id=id,
+    current_status="PROCESSING",
+    recommendations=root_cause.recommended_actions,
+    status="AWAIT_USER_ACTION",
+    last_changed=datetime.now(),
+    root_cause=f"{root_cause.description}: {root_cause.root_cause}",
+)
 
 print(root_cause)
