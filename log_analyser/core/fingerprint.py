@@ -1,12 +1,13 @@
-from typing import Any
+import hashlib
+
 from .log import ParsedLog
 from .normalizer import Normalizer
-import hashlib
 
 STACK_TRACE_MAX_CHARS = 100
 STACK_TRACE_MAX_LINES = 5
 
 # TODO: Should normalization be done outside this function or within this function ?
+
 
 def create_fingerprint_with_stack_trace(log: ParsedLog, normalizer: Normalizer) -> str:
     """
@@ -34,6 +35,7 @@ def create_fingerprint_with_stack_trace(log: ParsedLog, normalizer: Normalizer) 
     stack_trace_normalized = normalizer.normalize(stack_trace)
     fingerprint_input = f"{log.level}{message_normalized}{stack_trace_normalized}"
     return hashlib.sha256(fingerprint_input.encode("utf-8")).hexdigest()
+
 
 def create_fingerprint(log: ParsedLog, normalizer: Normalizer) -> str:
     """

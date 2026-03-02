@@ -1,6 +1,5 @@
-from .log import ParsedLog
-from abc import abstractmethod, ABC
 import re
+from abc import ABC, abstractmethod
 
 patterns = {
     "uuid": re.compile(

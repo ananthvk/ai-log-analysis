@@ -1,15 +1,16 @@
-from log_analyser.core.normalizer import default_normalizer
+import time
 from datetime import datetime
-from log_analyser.core.log import parse_log, RawLog
-from log_analyser.core.fingerprint import create_fingerprint_with_stack_trace
-from log_analyser.store.incident_repository import IncidentRepository
-from log_analyser.store.sqlite_repository import SQLiteIncidentRepository
-from log_analyser.core.incident import Incident
-from log_analyser.rca.root_cause import RootCause, infer
+from uuid import uuid7
+
 import instructor
 
-from uuid import uuid7
-import time
+from log_analyser.core.fingerprint import create_fingerprint_with_stack_trace
+from log_analyser.core.incident import Incident
+from log_analyser.core.log import RawLog, parse_log
+from log_analyser.core.normalizer import default_normalizer
+from log_analyser.rca.root_cause import infer
+from log_analyser.store.incident_repository import IncidentRepository
+from log_analyser.store.sqlite_repository import SQLiteIncidentRepository
 
 repo: IncidentRepository = SQLiteIncidentRepository("logs/incidents.db")
 # TODO: Close it later

@@ -35,7 +35,7 @@ def extract_value(data: dict[str, Any], keys: list[str]) -> Any:
         keys (list[str]): List of keys to search for in data
     Returns:
         Any: The value associated with any of the keys, if it exists. If a key does not exist, None is returned.
-             It is not possible to differentiate between null value and abscence of key
+             It is not possible to differentiate between null value and absence of key
     """
     for key in keys:
         if key in data:
@@ -67,7 +67,7 @@ class ParsedLog:
 
     Attributes:
         source_id (str): Identifier of the application or service that generated this log
-        timestamp (datetime): The time of occurence of this log event
+        timestamp (datetime): The time of occurrence of this log event
         level (Literal["DEBUG", "INFO", "WARN", "ERROR", "FATAL", "UNKNOWN"]): The severity level of the log entry.
         parameters (dict[str, Any]): A dictionary of key-value pairs containing context, and parameters extracted from the log
         message (str): Message of the log
@@ -122,7 +122,7 @@ def __parse_text_log(raw: RawLog) -> ParsedLog:
     except Exception:
         try:
             parsed_ts = datetime.strptime(timestamp, "%d-%b-%Y %H:%M:%S")  # type: ignore
-        except Exception as e:
+        except Exception:
             parsed_ts = datetime.fromtimestamp(raw.timestamp)
 
     return ParsedLog(
@@ -165,9 +165,14 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
     source_id = raw.source_id
     if not source_id:
         source_id = extract_value(parsed, SOURCE_ID_KEYS)
+    if not source_id:
+        source_id = "unknown"
 
     if not isinstance(message, str) and message is not None:
         message = str(message)
+
+    if level:
+        level = level.upper()
 
     if not isinstance(level, str) or level not in [
         "DEBUG",
@@ -178,15 +183,12 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
     ]:
         level = "UNKNOWN"
 
-    if level:
-        level = level.upper()
-
     try:
         parsed_ts = datetime.fromisoformat(timestamp)
     except Exception:
         try:
             parsed_ts = datetime.strptime(timestamp, "%d-%b-%Y %H:%M:%S")
-        except Exception as e:
+        except Exception:
             parsed_ts = datetime.fromtimestamp(raw.timestamp)
 
     # Upgrade error message keys / error type keys into message
@@ -204,7 +206,7 @@ def __parse_json_log(raw: RawLog) -> ParsedLog | None:
             message = f"{error_type}: {error_message.strip()}"
 
     if not message and error_type:
-        message = f"{error_type} error occured"
+        message = f"{error_type} error occurred"
 
     return ParsedLog(
         raw=raw_message,

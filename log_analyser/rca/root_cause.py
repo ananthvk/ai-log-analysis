@@ -1,6 +1,8 @@
 from typing import Literal
-from pydantic import BaseModel, Field
+
 from instructor import Instructor
+from pydantic import BaseModel, Field
+
 from ..core.log import ParsedLog
 
 
@@ -33,7 +35,7 @@ class RootCause(BaseModel):
     ] = Field(description="Source category of the root cause")
 
 
-def infer(client: Instructor, log: ParsedLog, model: str):
+def infer(client: Instructor, log: ParsedLog, model: str) -> RootCause:
     return client.create(
         response_model=RootCause,
         model=model,

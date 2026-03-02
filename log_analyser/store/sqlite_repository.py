@@ -1,5 +1,5 @@
-import sqlite3
 import json
+import sqlite3
 from datetime import datetime
 from typing import override
 
@@ -19,8 +19,7 @@ class SQLiteIncidentRepository(IncidentRepository):
         self._init_schema()
 
     def _init_schema(self) -> None:
-        self._conn.execute(
-            """
+        self._conn.execute("""
             CREATE TABLE IF NOT EXISTS incidents (
                 id TEXT PRIMARY KEY,
                 source_id TEXT NOT NULL,
@@ -35,14 +34,11 @@ class SQLiteIncidentRepository(IncidentRepository):
                 sample_log TEXT NOT NULL,
                 root_cause TEXT NOT NULL
             )
-        """
-        )
-        self._conn.execute(
-            """
+        """)
+        self._conn.execute("""
             CREATE UNIQUE INDEX IF NOT EXISTS idx_incidents_source_fingerprint
             ON incidents (source_id, fingerprint)
-        """
-        )
+        """)
         self._conn.commit()
 
     @override
@@ -66,7 +62,10 @@ class SQLiteIncidentRepository(IncidentRepository):
         row = cursor.fetchone()
         if row is None:
             return None
-        return row["id"]
+
+        if isinstance(row["id"], str):
+            return row["id"]
+        raise ValueError("Invalid type of id, logic error")
 
     @override
     def create(self, incident: Incident) -> None:
@@ -124,9 +123,16 @@ class SQLiteIncidentRepository(IncidentRepository):
         last_changed: datetime,
         current_status: str,
     ) -> bool:
-        cursor =self._conn.execute(
+        cursor = self._conn.execute(
             "UPDATE incidents SET root_cause = ?, recommendations = ?, status = ?, last_changed = ? WHERE id = ? AND status = ?",
-            (root_cause, json.dumps(recommendations), status, last_changed, id, current_status),
+            (
+                root_cause,
+                json.dumps(recommendations),
+                status,
+                last_changed,
+                id,
+                current_status,
+            ),
         )
         self._conn.commit()
         return cursor.rowcount > 0

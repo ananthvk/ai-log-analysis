@@ -1,8 +1,9 @@
-from log_analyser.core.normalizer import default_normalizer
-from log_analyser.core.log import parse_log, RawLog
-from log_analyser.core.fingerprint import create_fingerprint_with_stack_trace
-from collections import defaultdict
 import json
+from collections import defaultdict
+
+from log_analyser.core.fingerprint import create_fingerprint_with_stack_trace
+from log_analyser.core.log import RawLog, parse_log
+from log_analyser.core.normalizer import default_normalizer
 
 with open("sample_logs/logs.json", "r") as f:
     error_batches = json.load(f)
@@ -29,7 +30,9 @@ for i, message in enumerate(error_messages):
         parsed_log = parse_log(message)
 
         normalized = default_normalizer.normalize(parsed_log.message)
-        fingerprint = create_fingerprint_with_stack_trace(parsed_log, default_normalizer)
+        fingerprint = create_fingerprint_with_stack_trace(
+            parsed_log, default_normalizer
+        )
 
         clusters[fingerprint].append(
             {

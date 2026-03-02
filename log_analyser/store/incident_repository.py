@@ -1,10 +1,10 @@
-from abc import abstractmethod, ABC
-from ..core.incident import Incident
+from abc import abstractmethod
 from datetime import datetime
+
+from ..core.incident import Incident
 
 
 class IncidentRepository:
-
     @abstractmethod
     def get(self, incident_id: str) -> Incident | None: ...
 
@@ -36,7 +36,7 @@ class IncidentRepository:
         ...
 
     @abstractmethod
-    def increment_count(self, incident_id: str, timestamp) -> None:
+    def increment_count(self, incident_id: str, timestamp: datetime) -> None:
         """
         This method must atomically increase the count of incident. If the incident
         does not exist, this method must do nothing
